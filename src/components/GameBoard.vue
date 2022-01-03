@@ -89,17 +89,19 @@ export default {
         };
       });
     },
-    matchedCard() {
-      if (this.userSelection[1].faceValue === this.userSelection[0].faceValue) {
+    matchedCard(cardFirst, cardSecond) {
+      const isMatched =
+        cardSecond.faceValue === cardFirst.faceValue;
+      if (isMatched) {
         setTimeout(() => {
-          this.cardList[this.userSelection[1].position].matched = true;
-          this.cardList[this.userSelection[0].position].matched = true;
+          this.cardList[cardSecond.position].matched = true;
+          this.cardList[cardFirst.position].matched = true;
           this.userSelection.length = 0;
         }, 1000);
       } else {
         setTimeout(() => {
-          this.cardList[this.userSelection[1].position].visible = false;
-          this.cardList[this.userSelection[0].position].visible = false;
+          this.cardList[cardSecond.position].visible = false;
+          this.cardList[cardFirst.position].visible = false;
           this.userSelection.length = 0;
         }, 500);
       }
@@ -118,7 +120,7 @@ export default {
           this.userSelection[0] = payload;
         }
         if (this.userSelection.length === 2) {
-          this.matchedCard();
+          this.matchedCard(this.userSelection[0], this.userSelection[1]);
         }
       }
     },
