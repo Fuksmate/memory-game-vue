@@ -36,7 +36,7 @@ export default {
       }
     });
     const selectCard = () => {
-      context.emit("click", {
+      context.emit("select-card", {
         position: props.position,
         faceValue: props.value,
       });

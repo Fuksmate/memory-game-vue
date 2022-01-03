@@ -1,29 +1,22 @@
 <template>
   <h1>MEMORY GAMME</h1>
-  <button @click="toggleFullScreen" class="full-screen-button"></button>
-  <GameBoard />
+  <button @click="creativeDeck" class="full-screen-button"></button>
+  Full SCREEM
+  <section class="game-board">
+    <GameBoard/>
+  </section>
+
 </template>
 
 <script>
-import GameBoard from "./components/GameBoard.vue";
+import GameBoard from "./components/GameBoard";
 
 export default {
   name: "App",
   components: {
     GameBoard,
   },
-  methods: {
-    toggleFullScreen() {
-      if (document.fullscreenElement) {
-        document
-          .exitFullscreen()
-          .then(() => console.log("Document Exited from Full screen mode"))
-          .catch((err) => console.error(err));
-      } else {
-        document.documentElement.requestFullscreen();
-      }
-    },
-  },
+  
 };
 </script>
 
@@ -44,7 +37,31 @@ h2 {
   text-align: center;
   position: relative;
 }
-
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  grid-template-rows: repeat(4, 120px);
+  grid-column-gap: 5vw;
+  grid-row-gap: 4vh;
+  justify-content: center;
+}
+.reset-button {
+  box-shadow: inset 0px 1px 3px 0px #91b8b3;
+  background: linear-gradient(to bottom, #e8e8e8 5%, #6c7c7c 100%);
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  border: 1px solid #566963;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 11px 23px;
+  width: 300px;
+  text-decoration: none;
+  text-shadow: 0px -1px 0px #2b665e;
+}
 .full-screen-button {
   margin: 20px;
   color: #1ccece;
