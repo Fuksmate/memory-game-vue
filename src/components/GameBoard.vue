@@ -57,7 +57,7 @@ export default {
         position: index,
       };
     });
-     this.restartGame()
+    this.restartGame();
   },
   computed: {
     matchStatus() {
@@ -89,6 +89,21 @@ export default {
         };
       });
     },
+    matchedCard() {
+      if (this.userSelection[1].faceValue === this.userSelection[0].faceValue) {
+        setTimeout(() => {
+          this.cardList[this.userSelection[1].position].matched = true;
+          this.cardList[this.userSelection[0].position].matched = true;
+          this.userSelection.length = 0;
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          this.cardList[this.userSelection[1].position].visible = false;
+          this.cardList[this.userSelection[0].position].visible = false;
+          this.userSelection.length = 0;
+        }, 500);
+      }
+    },
 
     flipCard(payload) {
       if (!this.cardList[payload.position].matched) {
@@ -103,21 +118,7 @@ export default {
           this.userSelection[0] = payload;
         }
         if (this.userSelection.length === 2) {
-          if (
-            this.userSelection[1].faceValue === this.userSelection[0].faceValue
-          ) {
-            setTimeout(() => {
-              this.cardList[this.userSelection[1].position].matched = true;
-              this.cardList[this.userSelection[0].position].matched = true;
-              this.userSelection.length = 0;
-            }, 1000);
-          } else {
-            setTimeout(() => {
-              this.cardList[this.userSelection[1].position].visible = false;
-              this.cardList[this.userSelection[0].position].visible = false;
-              this.userSelection.length = 0;
-            }, 500);
-          }
+          this.matchedCard();
         }
       }
     },

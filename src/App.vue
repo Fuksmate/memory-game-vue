@@ -1,7 +1,7 @@
 <template>
   <h1>MEMORY GAMME</h1>
-  <button @click="creativeDeck" class="full-screen-button"></button>
-  Full SCREEM
+  <button @click="toggleFullScreen" class="full-screen-button"></button>
+  Full screen
   <section class="game-board">
     <GameBoard/>
   </section>
@@ -15,6 +15,16 @@ export default {
   name: "App",
   components: {
     GameBoard,
+  },
+   methods: {
+    toggleFullScreen() {
+      if (document.fullscreenElement) {
+        document
+          .exitFullscreen()
+      } else {
+        document.documentElement.requestFullscreen();
+      }
+    },
   },
   
 };

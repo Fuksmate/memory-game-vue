@@ -8,11 +8,9 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity";
-
 export default {
   props: {
-     value: {
+    value: {
       type: String,
       required: true,
     },
@@ -29,22 +27,21 @@ export default {
       default: false,
     },
   },
-  setup(props, context) {
-    const flippedStyles = computed(() => {
-      if (props.visible) {
+  computed: {
+    flippedStyles() {
+      if (this.visible) {
         return "is-flipped";
       }
-    });
-    const selectCard = () => {
-      context.emit("select-card", {
-        position: props.position,
-        faceValue: props.value,
+      return "";
+    },
+  },
+  methods: {
+    selectCard() {
+      this.$emit("select-card", {
+        position: this.position,
+        faceValue: this.value,
       });
-    };
-    return {
-      selectCard,
-      flippedStyles,
-    };
+    },
   },
 };
 </script>
