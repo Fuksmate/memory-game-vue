@@ -9,9 +9,9 @@ export default function createGame(deck) {
     deck.value = deck.value.map((card, index) => {
       return {
         ...card,
-        matched: false,
+        isMatched: false,
         position: index,
-        visible: false,
+        isVisible: false,
       };
     });
   };
@@ -24,11 +24,11 @@ export default function createGame(deck) {
     }
   });
   const matchesFound = computed(() => {
-    const matchedCards = deck.value.filter(
-      (card) => card.matched === true
+    const isMatchedCards = deck.value.filter(
+      (card) => card.isMatched === true
     ).length;
 
-    return matchedCards / 2;
+    return isMatchedCards / 2;
   });
 
   return {

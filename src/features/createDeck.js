@@ -3,21 +3,21 @@ import { ref } from 'vue'
 const cardList = ref([])
 
 const initDeck = deckData => {
-  deckData.forEach(item => {
+  deckData.forEach(color => {
     cardList.value.push({
-      value: item,
+      value: color,
       variant: 1,
-      visible: false,
+      isVisible: false,
       position: null,
-      matched: false
+      isMatched: false
     })
 
     cardList.value.push({
-      value: item,
+      value: color,
       variant: 2,
-      visible: true,
+      isVisible: true,
       position: null,
-      matched: false
+      isMatched: false
     })
   })
 }

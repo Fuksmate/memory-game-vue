@@ -1,7 +1,7 @@
 <template>
   <div class="card" :class="flippedStyles" @click="selectCard">
     <div :style="{ backgroundColor: value }" class="card-face is-front">
-      <div v-if="matched" class="matched"></div>
+      <div v-if="isMatched" class="isMatched"></div>
     </div>
     <div class="card-face is-back"></div>
   </div>
@@ -16,7 +16,7 @@ export default {
       type: String,
       required: true,
     },
-    matched: {
+    isMatched: {
       type: Boolean,
       default: false,
     },
@@ -24,14 +24,14 @@ export default {
       type: Number,
       required: true,
     },
-    visible: {
+    isVisible: {
       type: Boolean,
       default: false,
     },
   },
   setup(props, context) {
     const flippedStyles = computed(() => {
-      if (props.visible) {
+      if (props.isVisible) {
         return "is-flipped";
       }
     });
@@ -75,7 +75,7 @@ export default {
   background-color: white;
   height: 100%;
 }
-.matched {
+.isMatched {
   position: absolute;
   background-color: white;
   transform: 1s;

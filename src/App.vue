@@ -15,10 +15,7 @@ export default {
   methods: {
     toggleFullScreen() {
       if (document.fullscreenElement) {
-        document
-          .exitFullscreen()
-          .then(() => console.log("Document Exited from Full screen mode"))
-          .catch((err) => console.error(err));
+        document.exitFullscreen();
       } else {
         document.documentElement.requestFullscreen();
       }

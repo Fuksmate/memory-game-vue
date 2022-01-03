@@ -4,8 +4,8 @@
       v-for="card in cardList"
       :key="card.position"
       :value="card.value"
-      :visible="card.visible"
-      :matched="card.matched"
+      :isVisible="card.isVisible"
+      :isMatched="card.isMatched"
       :position="card.position"
       @click="flipCard"
     />
@@ -41,7 +41,7 @@ export default {
     });
 
     const flipCard = (payload) => {
-      cardList.value[payload.position].visible = true;
+      cardList.value[payload.position].isVisible = true;
       if (userSelection.value[0]) {
         if (userSelection.value[0].position === payload.position) {
           return;
@@ -59,16 +59,16 @@ export default {
         if (selectionValue.length === 2) {
           const cardFirst = selectionValue[0];
           const cardSecond = selectionValue[1];
-          const isMatched = cardFirst.faceValue === cardSecond.faceValue;
-          if (isMatched) {
+          const isisMatched = cardFirst.faceValue === cardSecond.faceValue;
+          if (isisMatched) {
             setTimeout(() => {
-              cardList.value[cardFirst.position].matched = true;
-              cardList.value[cardSecond.position].matched = true;
+              cardList.value[cardFirst.position].isMatched = true;
+              cardList.value[cardSecond.position].isMatched = true;
             }, 500);
           } else {
             setTimeout(() => {
-              cardList.value[cardFirst.position].visible = false;
-              cardList.value[cardSecond.position].visible = false;
+              cardList.value[cardFirst.position].isVisible = false;
+              cardList.value[cardSecond.position].isVisible = false;
             }, 500);
           }
 
