@@ -1,6 +1,6 @@
 <template>
   <div class="card" :class="flippedStyles" @click="selectCard">
-    <div :style="{ backgroundColor: value }" class="card-face is-front">
+    <div v-if="isVisible" :style="{ backgroundColor: value }" class="card-face is-front">
       <div v-if="isMatched" class="isMatched"></div>
     </div>
     <div class="card-face is-back"></div>
@@ -12,7 +12,7 @@ import { computed } from "@vue/reactivity";
 
 export default {
   props: {
-     value: {
+    value: {
       type: String,
       required: true,
     },
@@ -65,14 +65,12 @@ export default {
   height: 100%;
   width: 100%;
   position: absolute;
-  border-radius: inherit;
-  transform: rotateY(180deg);
 }
 .card.is-flipped {
   transform: rotateY(180deg);
+  
 }
 .is-back {
-  background-color: white;
   height: 100%;
 }
 .isMatched {

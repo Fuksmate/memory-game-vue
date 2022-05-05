@@ -32,7 +32,6 @@ export default {
       createGame(cardList);
     const userSelection = ref([]);
 
-
     cardList.value = cardList.value.map((card, index) => {
       return {
         ...card,
